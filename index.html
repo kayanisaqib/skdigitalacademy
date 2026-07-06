@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SK Digital Academy — Notes, Past Papers & Guides</title>
+<meta name="description" content="Download free study notes, past papers, and guides from SK Digital Academy.">
+<style>
+  :root{
+    --navy:#101828;
+    --navy-soft:#182235;
+    --amber:#E8A33D;
+    --amber-light:#F4C579;
+    --ink:#0C121D;
+    --paper:#F6F4EF;
+    --muted:#8B93A3;
+    --line:#26314A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--ink); color:var(--paper);
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(12,18,29,0.9); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:20px 6vw; display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{font-size:19px; font-weight:700; letter-spacing:-0.02em;}
+  .brand span{color:var(--amber);}
+  .admin-link{
+    font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--muted);
+    border:1px solid var(--line); padding:9px 16px; border-radius:6px; transition:.25s;
+  }
+  .admin-link:hover{border-color:var(--amber); color:var(--amber-light);}
+
+  .hero{padding:80px 6vw 50px; text-align:center;}
+  .hero h1{font-size:clamp(1.9rem,4.5vw,3rem); font-weight:700; letter-spacing:-0.02em; margin-bottom:16px;}
+  .hero h1 span{color:var(--amber);}
+  .hero p{color:var(--muted); max-width:520px; margin:0 auto; font-size:15px; line-height:1.7;}
+
+  .controls{
+    display:flex; gap:12px; flex-wrap:wrap; justify-content:center;
+    padding:0 6vw 50px; max-width:1100px; margin:0 auto;
+  }
+  .search{
+    flex:1; min-width:220px; max-width:360px;
+    background:var(--navy-soft); border:1px solid var(--line); border-radius:8px;
+    padding:12px 16px; color:var(--paper); font-size:14px;
+  }
+  .search::placeholder{color:var(--muted);}
+  .filter-btn{
+    background:var(--navy-soft); border:1px solid var(--line); color:var(--muted);
+    padding:12px 18px; border-radius:8px; font-size:13px; cursor:pointer; transition:.25s;
+  }
+  .filter-btn:hover{color:var(--paper); border-color:var(--amber);}
+  .filter-btn.active{background:var(--amber); color:var(--ink); border-color:var(--amber); font-weight:700;}
+
+  main{max-width:1100px; margin:0 auto; padding:0 6vw 100px;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:22px;}
+
+  .card{
+    background:var(--navy-soft); border:1px solid var(--line); border-radius:12px;
+    overflow:hidden; display:flex; flex-direction:column; transition:transform .3s, border-color .3s;
+  }
+  .card:hover{transform:translateY(-4px); border-color:var(--amber);}
+  .card-thumb{
+    height:150px; background:linear-gradient(135deg, var(--navy) 0%, #23304a 100%);
+    display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+  }
+  .card-thumb img{width:100%; height:100%; object-fit:cover;}
+  .card-thumb .file-icon{font-size:38px; opacity:.5;}
+  .card-tag{
+    position:absolute; top:10px; left:10px; background:rgba(12,18,29,0.75);
+    color:var(--amber-light); font-size:10px; letter-spacing:1px; text-transform:uppercase;
+    padding:5px 10px; border-radius:5px; border:1px solid var(--line);
+  }
+  .card-body{padding:18px 18px 20px; display:flex; flex-direction:column; flex:1;}
+  .card-body h3{font-size:16px; margin-bottom:8px; line-height:1.4;}
+  .card-body p{font-size:13px; color:var(--muted); line-height:1.6; flex:1; margin-bottom:16px;}
+  .card-footer{display:flex; flex-direction:column; gap:10px;}
+  .card-date{font-size:11px; color:var(--muted);}
+  .btn-row{display:flex; gap:8px;}
+  .view-btn, .dl-btn{
+    flex:1; text-align:center; font-size:12px; font-weight:700;
+    padding:9px 14px; border-radius:6px; letter-spacing:.3px; transition:.25s;
+  }
+  .view-btn{background:transparent; color:var(--amber-light); border:1px solid var(--amber);}
+  .view-btn:hover{background:rgba(232,163,61,0.1);}
+  .dl-btn{background:var(--amber); color:var(--ink); border:1px solid var(--amber);}
+  .dl-btn:hover{background:var(--amber-light);}
+  .dl-btn.disabled, .view-btn.disabled{background:var(--line); color:var(--muted); border-color:var(--line); pointer-events:none;}
+
+  .state-msg{
+    text-align:center; padding:60px 20px; color:var(--muted); font-size:14px; line-height:1.8;
+    border:1px dashed var(--line); border-radius:12px; grid-column:1/-1;
+  }
+  .state-msg code{background:var(--navy-soft); padding:2px 8px; border-radius:4px; color:var(--amber-light);}
+
+  footer{text-align:center; padding:36px; color:var(--muted); font-size:12px; border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">SK Digital <span>Academy</span></div>
+  <a class="admin-link" href="/admin/">Admin Login</a>
+</header>
+
+<section class="hero">
+  <h1>Free notes, past papers &amp; <span>guides</span></h1>
+  <p>SK Digital Academy — everything below is uploaded and managed directly through the admin panel, so new resources appear here automatically.</p>
+</section>
+
+<div class="controls">
+  <input class="search" id="searchInput" type="text" placeholder="Search resources…">
+  <button class="filter-btn active" data-cat="All">All</button>
+  <button class="filter-btn" data-cat="Notes">Notes</button>
+  <button class="filter-btn" data-cat="Past Papers">Past Papers</button>
+  <button class="filter-btn" data-cat="Guide">Guides</button>
+  <button class="filter-btn" data-cat="Video">Video</button>
+</div>
+
+<main>
+  <div class="grid" id="grid">
+    <div class="state-msg">Loading resources…</div>
+  </div>
+</main>
+
+<footer>© SK Digital Academy — Content managed via <a href="/admin/" style="color:#E8A33D;">Admin Panel</a></footer>
+
+<script>
+  const REPO_OWNER = "kayanisaqib";
+  const REPO_NAME  = "skdigitalacademy";
+  const BRANCH     = "main";
+  const GH_TOKEN   = "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";
+
+  const API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/content/resources?ref=${BRANCH}&_=${Date.now()}`;
+  const AUTH_HEADERS = { cache: 'no-store', headers: { Authorization: `Bearer ${GH_TOKEN}` } };
+  const grid = document.getElementById('grid');
+  let allItems = [];
+  let activeCategory = 'All';
+  let lastStatus = null;
+
+  function iconFor(cat){
+    return {Notes:'📘','Past Papers':'📄',Guide:'🧭',Video:'🎬'}[cat] || '📁';
+  }
+
+  function viewUrlFor(fileUrl){
+    if (!fileUrl) return '#';
+    const isPdf = fileUrl.toLowerCase().endsWith('.pdf');
+    if (isPdf){
+      const absoluteUrl = window.location.origin + fileUrl;
+      return `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
+    }
+    return fileUrl;
+  }
+
+  function render(){
+    const term = document.getElementById('searchInput').value.trim().toLowerCase();
+    const filtered = allItems.filter(item => {
+      const matchesCat = activeCategory === 'All' || item.category === activeCategory;
+      const matchesTerm = !term || (item.title||'').toLowerCase().includes(term) || (item.description||'').toLowerCase().includes(term);
+      return matchesCat && matchesTerm;
+    });
+
+    if (filtered.length === 0){
+      grid.innerHTML = `<div class="state-msg">No resources found yet.<br>Log in at <code>/admin</code> to upload your first PDF or image.</div>`;
+      return;
+    }
+
+    grid.innerHTML = filtered.map(item => `
+      <div class="card">
+        <div class="card-thumb">
+          ${item.image ? `<img src="${item.image}" alt="${item.title||''}">` : `<span class="file-icon">${iconFor(item.category)}</span>`}
+          <span class="card-tag">${item.category || 'Resource'}</span>
+        </div>
+        <div class="card-body">
+          <h3>${item.title || 'Untitled'}</h3>
+          <p>${item.description || ''}</p>
+          <div class="card-footer">
+            <span class="card-date">${item.date ? new Date(item.date).toLocaleDateString() : ''}</span>
+            <div class="btn-row">
+              ${item.file
+                ? `<a class="view-btn" href="${viewUrlFor(item.file)}" target="_blank" rel="noopener">View</a><a class="dl-btn" href="${item.file}" download target="_blank" rel="noopener">Download</a>`
+                : `<span class="view-btn disabled">No file</span><span class="dl-btn disabled">No file</span>`}
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  async function loadResources(){
+    try{
+      const res = await fetch(API_URL, AUTH_HEADERS);
+      lastStatus = res.status;
+      if (!res.ok){
+        grid.innerHTML = `<div class="state-msg">No resources uploaded yet (status ${res.status}).<br>Log in at <code>/admin</code> to add your first PDF or image.</div>`;
+        return;
+      }
+      const files = await res.json();
+      const jsonFiles = files.filter(f => f.name.endsWith('.json'));
+      const items = await Promise.all(jsonFiles.map(f => fetch(f.download_url, {cache:'no-store'}).then(r => r.json())));
+      allItems = items.sort((a,b) => new Date(b.date||0) - new Date(a.date||0));
+      render();
+    }catch(err){
+      grid.innerHTML = `<div class="state-msg">Couldn't load resources right now (${err.message}). Please refresh in a moment.</div>`;
+    }
+  }
+
+  document.getElementById('searchInput').addEventListener('input', render);
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = btn.dataset.cat;
+      render();
+    });
+  });
+
+  loadResources();
+</script>
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
