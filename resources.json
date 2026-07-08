@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Physics Test Pages",
+    "description": "Testing the final setup.",
+    "category": "Notes",
+    "image": "",
+    "file": "/uploads/physics_test_paged.pdf",
+    "date": "2026-07-08T00:00:00.000Z"
+  },
+  {
+    "title": "AI & ML Study Guide",
+    "description": "A study guide covering the fundamentals of AI and Machine Learning.",
+    "category": "Guide",
+    "image": "",
+    "file": "/uploads/AI%20Ml%20Study%20Guide.pdf",
+    "date": "2026-07-09T00:00:00.000Z"
+  }
+]
